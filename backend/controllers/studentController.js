@@ -37,7 +37,7 @@ console.log("name",req.body.name);
     if(!validator.isEmail(req.body.email)){
     res.status(500).json({ success:false,error:"error email not valid"});
 }
-console.log("eneter ");
+console.log("enter ");
 if(password.length<8){
     res.status(500).json({ success:false,error: "please enter strong password" });
 }
