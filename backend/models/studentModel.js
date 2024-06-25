@@ -1,10 +1,6 @@
-const mongoose =require( "mongoose")
-const studentSchema=new mongoose.Schema({
-    name:{type:String,required: true },
-    email: {type:String, required: true },
-    password: { type: String, required: true },
-    score: {type: Object, default:{}}
-    
-},{minimize:false})
-const studentModel=mongoose.models.students||mongoose.model("students",studentSchema);
-module.exports=studentModel;
+
+const studentSchema = require ('../schema')
+const mongoose = require ('mongoose')
+const Student = mongoose.model('Student', studentSchema)
+
+module.exports = Student;
