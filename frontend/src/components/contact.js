@@ -4,6 +4,7 @@ import { MDBInput, MDBCheckbox, MDBBtn, MDBValidation, MDBValidationItem,MDBText
 
 const Contact = () => {
   return (
+    <div className="all">
         <MDBValidation noValidate id='form' className='text-center' style={{ width: '100%', maxWidth: '300px' }}>
           <h2>Contact us</h2>
     
@@ -31,6 +32,7 @@ const Contact = () => {
             Send
           </MDBBtn>
         </MDBValidation>
+        </div>
       );
 };
 
