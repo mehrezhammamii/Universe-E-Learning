@@ -1,0 +1,68 @@
+/* 
+@import url('https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css');
+@import url('https://unpkg.com/bs-brain@2.0.4/components/contacts/contact-1/assets/css/contact-1.css'); */
+
+
+.section {
+    background-color: #f8f9fa;
+    padding: 3rem 0 5rem;
+  }
+  
+  .container {
+    max-width: 1140px;
+  }
+  
+  .form-wrapper {
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+  }
+  
+  .form-header {
+    padding: 2rem;
+  }
+  
+  .form-title {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .form-subtitle {
+    color: #6c757d;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .form-divider {
+    width: 50px;
+    border-bottom: 2px solid #343a40;
+    margin: 0 auto;
+  }
+  
+  .form-content {
+    padding: 2rem;
+  }
+  
+  .input-group-with-icon {
+    position: relative;
+  }
+  
+  .input-group-with-icon svg {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 15px;
+    color: #6c757d;
+  }
+  
+  .form-control {
+    padding-left: 3rem;
+  }
+  
+  .btn-submit {
+    width: 100%;
+  }
+  

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from './components/navbar';
+import Footer from "./components/footer"
 import Home from './components/home';
 import Course from './components/course';
 import AboutUs from './components/aboutus';
@@ -41,6 +42,7 @@ const App = () => {
             <div className="content">
                 {renderView()}
             </div>
+            <Footer/>
         </div>
     );
 };
