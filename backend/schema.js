@@ -17,6 +17,6 @@ const courseSchema = new mongoose.Schema({
 
 });
 
-module.exports = { studentSchema, courseSchema };
+module.exports = { studentSchema, courseSchema, quizSchema };
 
 
