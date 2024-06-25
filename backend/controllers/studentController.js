@@ -1,4 +1,7 @@
+
 const Student = require("../models/studentModel")
+
+
 const jwt=require("jsonwebtoken");
 const bcrypt=require("bcrypt");
 const validator =require("validator");

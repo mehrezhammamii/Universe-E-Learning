@@ -6,6 +6,7 @@ const studentRoute=require("./routes/studentRoute");
 const quizRouter=require("./routes/quizRoutes");
 const courseRouter=require("./routes/courseRoutes");
 
+
 connectDB();
 const app = express();
 require('dotenv').config();
