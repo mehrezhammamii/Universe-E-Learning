@@ -9,10 +9,11 @@ import Login from './components/login';
 import SignUp from './components/signup';
 import './App.css'; 
 import 'bootstrap/dist/css/bootstrap.min.css'; 
+import Login_Signin from './components/Login_Signin/Login_Signin';
 
 const App = () => {
     const [currentView, setCurrentView] = useState('home');
-
+const [showLogin,setShowLogin]=useState(false);
     const handleNavigation = (view) => {
         setCurrentView(view);
     };
@@ -37,13 +38,18 @@ const App = () => {
     };
 
     return (
+      <div>
+        {showLogin?<Login_Signin setShowLogin={setShowLogin}/>:<></>}
         <div className="app">
-            <Navbar handleNavigation={handleNavigation} />
+            
+            <Navbar handleNavigation={handleNavigation} setShowLogin={setShowLogin} />
             <div className="content">
                 {renderView()}
             </div>
             <Footer/>
         </div>
+      </div>
+      
     );
 };
 
