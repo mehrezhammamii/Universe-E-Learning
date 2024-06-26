@@ -34,5 +34,5 @@ res.status(500).json({success:false,message:"error score"})
         console.error("Error getting cart:", error.message);
         res.status(500).json({ success: false, message: "Error getting cart" });
     }
- }
- module.exports={addToScore,getScoreOneStudent};
+}
+module.exports={addToScore,getScoreOneStudent};

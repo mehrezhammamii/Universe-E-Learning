@@ -14,8 +14,8 @@ const Login_Signin = ({setShowLogin}) => {
     const handleChange = (e) => {
       const { name, value } = e.target;
       setData(prevData => ({
-        ...prevData,
-        [name]: value
+      ...prevData,
+      [name]:value
       }));
     };
   
