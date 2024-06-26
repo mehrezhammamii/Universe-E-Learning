@@ -7,5 +7,5 @@ courseRouter.get("/", courseController.getCourse);
 courseRouter.put("/:id", courseController.updateCourse);
 courseRouter.delete("/:id", courseController.deleteCourse);
 courseRouter.get("/:id", courseController.getOneCourse);
-
+courseRouter.post("/addExercise/:id",courseController.addExerciseForCourse);
 module.exports = courseRouter;

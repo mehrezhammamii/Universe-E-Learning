@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const studentSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true },
@@ -18,9 +17,6 @@ const courseSchema = new mongoose.Schema({
     video : {type: String},
     score : {type : Number}
 });
-
-const quizSchema = new mongoose.Schema({
-
-});
-
-module.exports = { studentSchema, courseSchema, quizSchema };
+const quizSchema=new mongoose.Schema(
+   );
+module.exports = { studentSchema,courseSchema,quizSchema };
