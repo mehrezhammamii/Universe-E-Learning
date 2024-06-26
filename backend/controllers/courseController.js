@@ -11,8 +11,8 @@ exports.getCourse = async (req, res) => {
 
 exports.addCourse = async (req, res) => {
     try {
-        const { courseName, categorie, description, price } = req.body; // Include description in destructuring
-        const course = new Course({ courseName, categorie, description }); // Pass description to Course constructor
+        const { courseName, categorie, description, price } = req.body; 
+        const course = new Course({ courseName, categorie, description });
         await course.save();
         res.status(201).json({ message: 'Course added successfully', course });
     } catch (error) {
@@ -37,7 +37,7 @@ exports.getOneCourse = async (req, res) => {
 exports.updateCourse = async (req, res) => {
     try {
         const { id } = req.params;
-        const { courseName, categorie, description, price } = req.body; // Include description in destructuring
+        const { courseName, categorie, description, price } = req.body; 
         const course = await Course.findByIdAndUpdate(id, { courseName, categorie, description, price }, { new: true });
         res.status(200).json({ message: 'Course updated successfully', course });
     } catch (error) {
