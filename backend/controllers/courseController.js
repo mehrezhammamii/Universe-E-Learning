@@ -39,8 +39,8 @@ exports.getOneCourse = async (req, res) => {
 exports.updateCourse = async (req, res) => {
     try {
         const { id } = req.params;
-        const { courseName, categorie, description, price, picture, video } = req.body; // Include description in destructuring
-        const course = await Course.findByIdAndUpdate(id, { courseName, categorie, description, price, picture, video }, { new: true });
+        const { courseName, categorie, description, price, picture, video, quiz } = req.body;
+        const course = await Course.findByIdAndUpdate(id, { courseName, categorie, description, price, picture, video, quiz }, { new: true });
         res.status(200).json({ message: 'Course updated successfully', course });
     } catch (error) {
         console.error(error);

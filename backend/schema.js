@@ -17,6 +17,7 @@ const courseSchema = new mongoose.Schema({
     video : {type: String},
     score : {type : Number}
 });
-const quizSchema=new mongoose.Schema(
-   );
-module.exports = { studentSchema,courseSchema,quizSchema };
+
+
+
+module.exports = { studentSchema, courseSchema };
