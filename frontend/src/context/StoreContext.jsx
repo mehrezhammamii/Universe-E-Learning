@@ -9,9 +9,9 @@ const StoreContextPrivider = ({children}) => {
   const addToScore= async (coursId)=>{
 if(token){
   await axios.post(url+"/api/score/add",{coursId},{headers:{token}})
+} 
 }
-}
-              const fetchCoursList=async ()=>{
+             const fetchCoursList=async ()=>{
               const response=await axios.get(url+"/api/course")
               setCourseList(response.data);
               console.log("res",response.data);
