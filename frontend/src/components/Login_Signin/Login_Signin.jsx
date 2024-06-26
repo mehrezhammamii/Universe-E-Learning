@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import "./Login_Signin.css"
-import axios from "axios"
+import axios from "axios";
 import { StoreContext } from '../../context/StoreContext';
 const Login_Signin = ({setShowLogin}) => {
     const [currState, setCurrState] = useState("Login");
