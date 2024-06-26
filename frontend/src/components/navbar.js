@@ -13,7 +13,7 @@ const Navbar = ({ handleNavigation,setShowLogin }) => {
                     <div className="nav-item" onClick={() => handleNavigation('contact')}>Contact</div>
                 </div>
                 <div className="auth-links">
-                <button className="nav-item" onClick={()=>setShowLogin(true)}>LogIn</button>
+                    <button className="nav-item" onClick={()=>setShowLogin(true)}>LogIn</button>
                     <div className="nav-item" onClick={() => handleNavigation('login')}>Login</div>
                     <div className="nav-item" onClick={() => handleNavigation('sign-up')}>Sign Up</div>
                 </div>
