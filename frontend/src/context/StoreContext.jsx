@@ -6,11 +6,26 @@ const StoreContextPrivider = ({children}) => {
  const url="http://localhost:5000";
  const[scoreStudent,setScoreStudent]=useState({})  
   const [courseList,setCourseList]=useState([]);
-  const addToScore= async (coursId)=>{
-if(token){
-  await axios.post(url+"/api/score/add",{coursId},{headers:{token}})
-} 
-}
+  const addToScore = async (courseId) => {
+    if (token) {
+       
+        try {
+          setScoreStudent(prev => {
+            const newScore = { ...prev };
+            if (!newScore[courseId]) {
+                newScore[courseId] = 1;
+            } else {
+                newScore[courseId] += 1;
+            }
+            return newScore;
+        });
+            await axios.post(url + "/api/score/add", { courseId }, { headers: { token } });
+            console.log("Score added successfully");
+        } catch (error) {
+            console.error("Error adding score:", error);
+        }
+    }
+};
              const fetchCoursList=async ()=>{
               const response=await axios.get(url+"/api/course")
               setCourseList(response.data);
@@ -19,12 +34,12 @@ if(token){
               const loadScoreStudent=async(token)=>{
 const response= await axios.get(url+"/api/score/get",{headers:{token}});
 setScoreStudent(response.data.scoreStudent);
-console.log("scoredata is",response.data.scoreStudent);         
+console.log("score data is",response.data.scoreStudent);         
 }
 
  useEffect(()=>{
  
-const laodData=async ()=>{
+const loadData=async ()=>{
   fetchCoursList();
   const tokenStudent=localStorage.getItem("token");
     if(tokenStudent){
@@ -33,8 +48,8 @@ const laodData=async ()=>{
 console.log("token of student login is ",localStorage.getItem("token"));    
 }
 }
-laodData();
-console.log("scorestudent",scoreStudent);
+loadData();
+console.log("score student",scoreStudent);
 },[])
  const contextValue={
     token,
