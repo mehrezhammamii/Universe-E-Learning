@@ -11,10 +11,12 @@ exports.getCourse = async (req, res) => {
 
 exports.addCourse = async (req, res) => {
     try {
-        const { courseName, categorie, description, price,picture,video } = req.body; // Include description in destructuring
-        const course = new Course({ courseName, categorie, description }); // Pass description to Course constructor
+        const { courseName, categorie, description, price, picture, video,quiz } = req.body; // Include description in destructuring
+        const course = new Course({ courseName, categorie, description, price, picture, video,quiz }); // Pass description to Course constructor
         await course.save();
+        console.log(req.body);
         res.status(201).json({ message: 'Course added successfully', course });
+        
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Error adding course' });
@@ -37,8 +39,8 @@ exports.getOneCourse = async (req, res) => {
 exports.updateCourse = async (req, res) => {
     try {
         const { id } = req.params;
-        const { courseName, categorie, description, price,picture,video } = req.body; // Include description in destructuring
-        const course = await Course.findByIdAndUpdate(id, { courseName, categorie, description, price }, { new: true });
+        const { courseName, categorie, description, price, picture, video } = req.body; // Include description in destructuring
+        const course = await Course.findByIdAndUpdate(id, { courseName, categorie, description, price, picture, video }, { new: true });
         res.status(200).json({ message: 'Course updated successfully', course });
     } catch (error) {
         console.error(error);
