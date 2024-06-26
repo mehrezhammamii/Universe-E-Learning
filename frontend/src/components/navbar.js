@@ -43,24 +43,32 @@ const Navbar = ({ handleNavigation, setShowLogin }) => {
   
     const formData = new FormData();
     formData.append('file', selectedFile);
-    formData.append('upload_preset', 'h.wingz'); // Replace with your Cloudinary upload preset
+    formData.append('upload_preset', 'your_cloudinary_upload_preset'); // Replace with your Cloudinary upload preset
   
     try {
-      const response = await axios.post('https://api.cloudinary.com/v1_1/dfmtaoyxa/image/upload', formData);
+      // Upload image to Cloudinary
+      const response = await axios.post('https://api.cloudinary.com/v1_1/dfmtaoyxa/image/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Authorization': 'Bearer 453643294521992',
+          'X-Requested-With': 'XMLHttpRequest',
+        },
+      });
       const imageUrl = response.data.secure_url;
   
       // Update profile picture in your backend
-      await axios.post(`${url}/api/student/update-profile-pic`, { imageUrl }, { headers: { token } });
+      await axios.post(`${url}/api/student/update-profile-pic`, { imageUrl }, { headers: { Authorization: `Bearer ${token}` } });
   
       // Update the profile picture in the state
       setProfilePic(imageUrl);
-      setShowUploadForm(false);
       setSelectedFile(null);
     } catch (error) {
       console.error('Error uploading file:', error);
       alert('Failed to upload image. Please try again.');
     }
   };
+  
+  
 
   return (
     <div className="navbar">
@@ -91,7 +99,8 @@ const Navbar = ({ handleNavigation, setShowLogin }) => {
       {showUploadForm && (
         <div className="upload-form">
           <input type="file" onChange={handleFileChange} />
-          <button onClick={handleFileUpload}>Upload</button>
+      <button onClick={handleFileUpload}>Upload</button>
+      {profilePic && <img src={profilePic} alt="Profile" />}
           <button onClick={() => setShowUploadForm(false)}>Cancel</button>
         </div>
       )}

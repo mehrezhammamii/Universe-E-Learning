@@ -12,6 +12,8 @@ connectDB(); // Assuming this connects to your database
 const app = express();
 require('dotenv').config();
 
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 app.use(cors());
 app.use(express.json());
 app.use('/api/student', studentRoute);

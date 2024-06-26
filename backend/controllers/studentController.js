@@ -58,16 +58,20 @@ const registerStudent = async (req, res) => {
 };
 
 const updateProfilePic = async (req, res) => {
-  const imageUrl = req.body.imageUrl;
-  const userId = req.user.id; // Assuming authenticateToken middleware sets req.user.id
+    const { imageUrl } = req.body;
+    const userId = req.user.id; // Assuming authenticateToken middleware sets req.user.id
+  
+    try {
+      // Update the profile picture URL in your database (assuming Mongoose)
+      await Student.findByIdAndUpdate(userId, { profilePic: imageUrl });
+  
+      res.json({ success: true, message: 'Profile picture updated successfully.', imageUrl });
+    } catch (error) {
+      console.error('Error updating profile picture:', error);
+      res.status(500).json({ success: false, message: 'Failed to update profile picture.' });
+    }
+  };
 
-  try {
-    await Student.updateOne({ _id: userId }, { profilePic: imageUrl });
-    res.json({ success: true, message: 'Profile picture updated successfully.' });
-  } catch (error) {
-    console.error('Error updating profile picture:', error);
-    res.status(500).json({ success: false, message: 'Failed to update profile picture.' });
-  }
-};
+
 
 module.exports = { registerStudent, loginStudent, updateProfilePic };
