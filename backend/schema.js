@@ -12,9 +12,10 @@ const courseSchema = new mongoose.Schema({
     courseName: { type: String, required: true },
     categorie: { type: String, required: true },
     description: { type: String, required: true },
-    price : {type : Number,required : true},
-    quiz : {type : Array,required : true}
-
+    price : {type: Number,required : true},
+    quiz:{type:Array,required : true},
+    picture:{type:String},
+    video:{type:String}
 });
 const quizSchema=new mongoose.Schema(
    );

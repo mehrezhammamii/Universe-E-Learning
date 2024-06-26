@@ -6,7 +6,7 @@ const StoreContextPrivider = ({children}) => {
  const url="http://localhost:3000";
  const[scoreStudent,setScoreStudent]=useState({})
     
-  const [coursList,setCoursList]=useState([]);
+  const [courseList,setCourseList]=useState([]);
   const addToScore= async (coursId)=>{
 if(token){
   await axios.post(url+"/api/score/add",{coursId},{headers:{token}})
@@ -16,7 +16,7 @@ if(token){
     
           const fetchCoursList=async ()=>{
               const response=await axios.get(url+"/api/course")
-              setCoursList(response.data);
+              setCourseList(response.data);
               }
               const loadScoreStudent=async(token)=>{
 const response= await axios.get(url+"/api/score/get",{headers:{token}});
@@ -51,9 +51,10 @@ console.log("scorestudent",scoreStudent);
     token,
     setToken,
     url,
-    coursList,
+    courseList,
     scoreStudent,
     setScoreStudent,
+    addToScore,
  }
     return (
     <StoreContext.Provider value={contextValue}>

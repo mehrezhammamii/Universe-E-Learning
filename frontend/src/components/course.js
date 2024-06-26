@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBBtn } from 'mdb-react-ui-kit';
+import { StoreContext } from '../context/StoreContext';
 
-const Course = ({ data }) => {
+const Course = () => {
+  const {coursetlist}=useContext(StoreContext);
   return (
     <>
-    { data.map((el) => (
-     
+    {coursetlist?coursetlist.map((el)=>(
     <MDBCard style={{ maxWidth: '22rem', margin: '1rem' }}>
       <MDBCardImage src={el.image} position='top' alt="image" />
       <MDBCardBody>
@@ -15,7 +16,7 @@ const Course = ({ data }) => {
       </MDBCardBody>
     </MDBCard>
 
-     ))}
+     )):<></>}
   </>
   );
 };
