@@ -3,8 +3,8 @@ import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBBtn }
 
 const Course = ({ data }) => {
   return (
-    <>
-    { data.map((el) => (
+    <div>
+    { data? data.map((el) => (
      
     <MDBCard style={{ maxWidth: '22rem', margin: '1rem' }}>
       <MDBCardImage src={el.image} position='top' alt="image" />
@@ -15,8 +15,8 @@ const Course = ({ data }) => {
       </MDBCardBody>
     </MDBCard>
 
-     ))}
-  </>
+     )): <></>}
+  </div>
   );
 };
 
