@@ -1,0 +1,22 @@
+.quiz-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .quiz-question {
+    margin-bottom: 20px;
+  }
+  
+  .answer-option {
+    margin-bottom: 10px;
+  }
+  
+  .answer-option label {
+    margin-left: 10px;
+  }
+  
+  .submit-button {
+    margin-top: 20px;
+  }
+  

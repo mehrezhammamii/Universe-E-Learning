@@ -5,7 +5,7 @@ const studentSchema = new mongoose.Schema({
     email: { type: String, required: true },
     password: { type: String, required: true },
     score: { type: Object, default: {} },
-    picture : {type: String,required : true}
+    picture : {type: String}
 }, { minimize: false });
 
 const courseSchema = new mongoose.Schema({
@@ -13,11 +13,11 @@ const courseSchema = new mongoose.Schema({
     categorie: { type: String, required: true },
     description: { type: String, required: true },
     price : {type : Number,required : true},
-    quiz : {type : Array,required : true}
-
+    quiz : {type : Array,required : true},
+    picture : {type: String},
+    video : {type: String}
 });
 
 
 
 module.exports = { studentSchema, courseSchema };
-
