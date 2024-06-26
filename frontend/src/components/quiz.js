@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import './quiz.css';
+import { StoreContext } from '../context/StoreContext';
 
 const QuizPage = ({ courseId, handleNavigation }) => {
+    const {scoreStudent,setScoreStudent}=useContext(StoreContext)
   const [quizData, setQuizData] = useState(null);
   const [selectedAnswers, setSelectedAnswers] = useState({}); 
-  const [score, setScore] = useState(0); 
+//   const [score, setScore] = useState(0); 
   const [showScore, setShowScore] = useState(false); 
   useEffect(() => {
     const fetchQuizData = async () => {
@@ -45,7 +47,7 @@ const QuizPage = ({ courseId, handleNavigation }) => {
     });
 
     const calculatedScore = (totalCorrectAnswers / quizData.quiz.length) * 100;
-    setScore(calculatedScore);
+    setScoreStudent(calculatedScore);
     setShowScore(true); 
 
   };
@@ -80,7 +82,7 @@ const QuizPage = ({ courseId, handleNavigation }) => {
             </div>
           ))}
           {!showScore && <button type="submit" className="submit-button">Submit Quiz</button>}
-          {showScore && <div className="score-container">Your Score: {Math.round(score)}%</div>}
+          {showScore && <div className="score-container">Your Score: {Math.round(scoreStudent)}%</div>}
         </form>
       )}
     </div>
