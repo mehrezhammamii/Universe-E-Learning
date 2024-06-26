@@ -3,7 +3,7 @@ import axios from 'axios';
 export const StoreContext=createContext(null);
 const StoreContextPrivider = ({children}) => {
  const [token,setToken]=useState("");
- const url="http://localhost:3000";
+ const url="http://localhost:5000";
  const[scoreStudent,setScoreStudent]=useState({})
     
   const [courseList,setCourseList]=useState([]);
@@ -17,7 +17,6 @@ if(token){
           const fetchCoursList=async ()=>{
               const response=await axios.get(url+"/api/course")
               setCourseList(response.data);
-              console.log("res",response.data);
               }
               const loadScoreStudent=async(token)=>{
 const response= await axios.get(url+"/api/score/get",{headers:{token}});

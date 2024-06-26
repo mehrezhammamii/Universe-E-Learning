@@ -21,8 +21,11 @@
   margin-left: 80px;
 }
 
-.auth-links{
-  padding-left: 1000px;
+.auth-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-right: 60px; /* Adjust this value to position the auth links properly */
 }
 
 .nav-item {
@@ -30,4 +33,40 @@
   font-weight: medium;
   color: black;
   cursor: pointer;
+  
+}
+.nav-item-btn {
+  margin-left: 20px;
+}
+
+.profile-img {
+  width: 40px; /* Adjust the size as needed */
+  height: 40px; /* Adjust the size as needed */
+  border-radius: 50%; /* Makes the image circular */
+  cursor: pointer; /* Indicates the image is clickable */
+  margin-right: 25px;
+  justify-content: space-between;
+  
+  margin-left: 20px;
+}
+
+.upload-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.upload-form input {
+  margin-bottom: 10px;
+}
+
+.upload-form button {
+  margin-right: 10px;
 }

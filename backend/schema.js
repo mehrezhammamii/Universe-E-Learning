@@ -5,7 +5,7 @@ const studentSchema = new mongoose.Schema({
     email: { type: String, required: true },
     password: { type: String, required: true },
     score: { type: Object, default: {} },
-    picture : {type: String}
+    profilePic: { type: String, default: null }
 }, { minimize: false });
 
 const courseSchema = new mongoose.Schema({
@@ -15,7 +15,8 @@ const courseSchema = new mongoose.Schema({
     price : {type : Number,required : true},
     quiz : {type : Array,required : true},
     picture : {type: String},
-    video : {type: String}
+    video : {type: String},
+    score : {type : Number}
 });
 
 const quizSchema = new mongoose.Schema({
