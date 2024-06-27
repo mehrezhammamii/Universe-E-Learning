@@ -6,7 +6,7 @@ import './profile.css';
 
 const Profile = () => {
   const { token, url } = useContext(StoreContext);
-  const [profileData, setProfileData] = useState({ profilePic: '', score: 0, courses: [] });
+  const [profileData, setProfileData] = useState({ profilePic: '', courses: [] });
 
   useEffect(() => {
     const fetchProfileData = async () => {
@@ -30,14 +30,11 @@ const Profile = () => {
       </div>
       <div className="profile-body">
         <div className="profile-section">
-          <h2>Score: {profileData.score}</h2>
-        </div>
-        <div className="profile-section">
           <h2>Courses Taken:</h2>
-          {profileData.courses.map((course) => (
-            <div key={course._id} className="profile-course">
-              <span>{course.courseName}</span>
-              <span>Score: {course.score}</span>
+          {profileData.courses.map((courseData) => (
+            <div key={courseData.course._id} className="profile-course">
+              <span>Course: {courseData.course.name}</span>
+              <span>Score: {courseData.score}%</span>
             </div>
           ))}
         </div>
