@@ -4,8 +4,10 @@ const studentSchema = new mongoose.Schema({
     email: { type: String, required: true },
     password: { type: String, required: true },
     score: { type: Object, default: {} },
-    picture :{type: String}
-}, { minimize:false});
+    courses: {type : Object, default: {}},
+    profilePic: { type: String, default: null }
+}, { minimize: false });
+
 const courseSchema = new mongoose.Schema({
     courseName: { type: String, required: true },
     categorie: { type: String, required: true },

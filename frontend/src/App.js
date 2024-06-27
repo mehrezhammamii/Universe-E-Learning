@@ -9,6 +9,7 @@ import Login from './components/login';
 import SignUp from './components/signup';
 import OneCourse from './components/oneCourse'; 
 import QuizPage from './components/quiz';
+import Profile from './components/profile'; // Import Profile component
 import './App.css'; 
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import Login_Signin from './components/Login_Signin/Login_Signin';
@@ -41,6 +42,8 @@ const App = () => {
                 return <OneCourse courseId={selectedCourse} handleNavigation={handleNavigation} />;
             case 'quizPage':
                 return <QuizPage courseId={selectedCourse} handleNavigation={handleNavigation} />;
+            case 'profile': // Add case for Profile
+                return <Profile handleNavigation={handleNavigation} />;
             default:
                 return <Home />;
         }
