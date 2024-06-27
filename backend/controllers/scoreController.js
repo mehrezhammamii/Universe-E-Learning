@@ -1,13 +1,11 @@
 const studentModel=require("../models/studentModel")
 
-
-
 const addToScore=async(req,res)=>{
     console.log("the student has ",req.body.studentId);
     // this id of student he is from auth file middleware when genreate token we store the id to him
     // and then the auth file decoded the token again and back us the id of student and 
     //we put it in body check the code logic again in middlware
-    console.log("the item has ",req.body.couseId);
+    console.log("the item has ",req.body.courseId);
 try{
 const studentData=await studentModel.findById(req.body.studentId);
 const scoreData=await studentData.score;
@@ -22,7 +20,9 @@ res.status(200).json({success:true,message:"added to score"});
     catch(error){
 res.status(500).json({success:false,message:"error score"})
     }
-}
+};
+
+
   const getScoreOneStudent=async (req,res)=>{
     console.log("the student has ", req.body.studentId);
     try {
@@ -34,7 +34,10 @@ res.status(500).json({success:false,message:"error score"})
         console.error("Error getting cart:", error.message);
         res.status(500).json({ success: false, message: "Error getting cart" });
     }
-}
+};
+
+
+
 const removeScore=async(req,res)=>{
    
     try{
@@ -48,5 +51,37 @@ res.status(200).json({success:true,message:"remove score",data:scoreData});
     catch(error){
 res.status(500).json({success:false,message:"error score"})
     }
-}
-module.exports={addToScore,getScoreOneStudent,removeScore};
+};
+
+
+const getProfileData = async (req, res) => {
+    console.log("the student has ", req.body.studentId);
+    try {
+      const studentData = await studentModel.findById(req.body.studentId).populate('courses');
+      const scoreData = studentData.score;
+  
+      // Fetching course details along with scores
+      const coursesWithScores = await Promise.all(
+        studentData.courses.map(async (courseId) => {
+          const course = await courseModel.findById(courseId);
+          return {
+            course,
+            score: scoreData[courseId] || 0,
+          };
+        })
+      );
+  
+      res.status(200).json({
+        success: true,
+        profilePic: studentData.profilePic,
+        courses: coursesWithScores,
+      });
+    } catch (error) {
+      console.error("Error getting profile data:", error.message);
+      res.status(500).json({ success: false, message: "Error getting profile data" });
+    }
+  };
+
+  
+
+module.exports={addToScore,getScoreOneStudent,removeScore, getProfileData};

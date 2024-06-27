@@ -10,11 +10,13 @@ const Course = ({handleNavigation}) => {
     handleNavigation('oneCourse',courseId);
   };
 
+  // Debug: Log courseList to verify data
+  console.log('courseList:', courseList);
+
   return (
-    
     <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
       {courseList.map((el) => (
-        <MDBCard key={el.id} style={{ maxWidth: '22rem', margin: '1rem' }}>
+        <MDBCard key={el._id} style={{ maxWidth: '22rem', margin: '1rem' }}>
           <MDBCardImage
             src={el.picture}
             position='top'
@@ -22,10 +24,9 @@ const Course = ({handleNavigation}) => {
             onClick={() => handleCourseClick(el._id)}
           />
           <MDBCardBody>
-            <MDBCardTitle onClick={() => handleCourseClick(el.id)}>{el.courseName}</MDBCardTitle>
+            <MDBCardTitle onClick={() => handleCourseClick(el._id)}>{el.courseName}</MDBCardTitle>
             <MDBCardText>${el.price}</MDBCardText>
             <MDBBtn href='#'>Buy Now</MDBBtn>
-
           </MDBCardBody>
         </MDBCard>
       ))}
