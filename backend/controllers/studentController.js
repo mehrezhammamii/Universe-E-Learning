@@ -7,13 +7,9 @@ const validator = require('validator');
 const createToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET);
 };
-<<<<<<< HEAD
 
   
   const getStudentData = async (req, res) => {
-=======
-    const getStudentData = async (req, res) => {
->>>>>>> ee9d9b6b3d56ec9ae93e2eb9cbda7df052b8f3d4
     try {
       const student = await Student.findById(req.body.studentId);
       if (!student) {

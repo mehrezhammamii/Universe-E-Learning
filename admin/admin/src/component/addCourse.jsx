@@ -6,7 +6,7 @@ import { CSSTransition } from 'react-transition-group'; // Import animation comp
 const AddCourseForm = ({ fetchCourses }) => {
   const [newCourse, setNewCourse] = useState({
     courseName: '',
-    category: '',
+    categorie: '', // Changed from 'category'
     description: '',
     price: '',
     picture: ''
@@ -18,7 +18,7 @@ const AddCourseForm = ({ fetchCourses }) => {
       console.log('Course added:', response.data.course);
       setNewCourse({
         courseName: '',
-        category: '',
+        categorie: '', // Reset the state for categorie
         description: '',
         price: '',
         picture: ''
@@ -26,6 +26,7 @@ const AddCourseForm = ({ fetchCourses }) => {
       fetchCourses();
     } catch (error) {
       console.error('Error adding course:', error);
+      // Log more detailed error information if needed: console.log(error.response);
     }
   };
 
@@ -44,8 +45,8 @@ const AddCourseForm = ({ fetchCourses }) => {
             <input type="text" name="courseName" value={newCourse.courseName} onChange={handleChange} />
           </div>
           <div className="form-group">
-            <label>Category</label>
-            <input type="text" name="category" value={newCourse.category} onChange={handleChange} />
+            <label>Categorie</label> {/* Changed from 'Category' */}
+            <input type="text" name="categorie" value={newCourse.categorie} onChange={handleChange} />
           </div>
           <div className="form-group">
             <label>Description</label>

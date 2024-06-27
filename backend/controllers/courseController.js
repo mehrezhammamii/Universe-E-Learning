@@ -58,22 +58,24 @@ exports.deleteCourse = async (req, res) => {
         res.status(500).json({ message: 'Error deleting course' });
     }
 };
-exports.addExerciseForCourse=async(req,res)=>{
-    const id = req.params.id;
-    const exercise = req.body.exercise;
+const { Course } = require('../models'); // Assuming Course model import
 
-    try {
-        const course = await Course.findById(id);
+exports.addExerciseForCourse = async (req, res) => {
+  const id = req.params.id;
+  const quizzes = req.body.quiz;
 
-        if (!course) {
-            return res.status(404).json({ message: 'Course not found' });
-        }
+  try {
+    const course = await Course.findById(id);
 
-        await Course.findByIdAndUpdate(id, { $push: { quiz: exercise } });
-
-        res.status(200).json({ message: 'Quiz updated successfully' });
-    } catch (error) {
-        console.error("Error updating quiz:", error.message);
-        res.status(500).json({ message: 'Internal server error' });
+    if (!course) {
+      return res.status(404).json({ message: 'Course not found' });
     }
+
+    await Course.findByIdAndUpdate(id, { $push: { quiz: { $each: quizzes } } });
+
+    res.status(200).json({ message: 'Quizzes updated successfully' });
+  } catch (error) {
+    console.error("Error updating quizzes:", error.message);
+    res.status(500).json({ message: 'Internal server error' });
+  }
 };
