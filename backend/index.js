@@ -22,8 +22,12 @@ app.use('/api/score', scoreRouter);
 app.get('/', (req, res) => {
   res.send('Successful response.');
 });
+<<<<<<< HEAD
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
 });
+=======
+app.listen(5000,()=> console.log('Example app is listening on port 5000.'));
+>>>>>>> 7376c207900dcd4483afb87af2a5b6e4fb4faf7b

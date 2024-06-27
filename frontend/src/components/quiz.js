@@ -4,11 +4,11 @@ import './quiz.css';
 import { StoreContext } from '../context/StoreContext';
 
 const QuizPage = ({ courseId, handleNavigation }) => {
-    const {scoreStudent,setScoreStudent}=useContext(StoreContext)
+  const {scoreStudent,setScoreStudent,addToScore,url,token}=useContext(StoreContext)
   const [quizData, setQuizData] = useState(null);
   const [selectedAnswers, setSelectedAnswers] = useState({}); 
-//   const [score, setScore] = useState(0); 
-  const [showScore, setShowScore] = useState(false); 
+  const [showScore,setShowScore] = useState(false); 
+  const[resultScore,setResultScore]=useState(null);
   useEffect(() => {
     const fetchQuizData = async () => {
       try {
@@ -32,22 +32,38 @@ const QuizPage = ({ courseId, handleNavigation }) => {
       [questionIndex]: event.target.value, 
     });
   };
-
-  const handleQuizSubmit = (event) => {
+const deleteScore= async()=>{
+const response=await axios.post(url+"/api/score/remove",{courseId},{headers:{token}})
+if(response.data.success){
+console.log("deleted good ",response.data.data);
+}
+else{
+  console.log("bad bro ");
+}
+}
+  const handleQuizSubmit = async(event) => {
+  
     event.preventDefault();
-    let totalCorrectAnswers = 0;
+   await deleteScore();
 
-    quizData.quiz.forEach((quizItem, index) => {
-      const questionIndex = index.toString();
-      const correctAnswer = Object.entries(quizItem)[0][1].find(answer => answer[Object.keys(answer)[0]] === true);
+   for (const [index, quizItem] of quizData.quiz.entries()) {
+    const questionIndex = index.toString();
+    const correctAnswer = Object.entries(quizItem)[0][1].find(answer => answer[Object.keys(answer)[0]] === true);
 
-      if (selectedAnswers[questionIndex] === Object.keys(correctAnswer)[0]) {
-        totalCorrectAnswers++;
-      }
-    });
+    console.log("correctedans", correctAnswer);
+    console.log("selectans", selectedAnswers[questionIndex]);
 
-    const calculatedScore = (totalCorrectAnswers / quizData.quiz.length) * 100;
-    setScoreStudent(calculatedScore);
+    if (selectedAnswers[questionIndex] === Object.keys(correctAnswer)[0]) {
+        console.log("courseId", courseId);
+        
+
+        await addToScore(courseId);
+    }
+}
+    console.log("scorestud",scoreStudent);
+    const calculatedScore=scoreStudent[courseId]?(scoreStudent[courseId]*100)/quizData.quiz.length:0;
+   console.log("calcuatedscore",calculatedScore);
+    setResultScore(calculatedScore);
     setShowScore(true); 
 
   };
@@ -56,6 +72,7 @@ const QuizPage = ({ courseId, handleNavigation }) => {
     <div className="quiz-container">
       <h2>Quiz Page</h2>
       <button onClick={handleBackButtonClick}>Back to Course</button>
+      <button onClick={()=>addToScore(courseId)}>addscore</button>
       {quizData && quizData.quiz && (
         <form onSubmit={handleQuizSubmit}>
           {quizData.quiz.map((quizItem, index) => (
@@ -82,7 +99,7 @@ const QuizPage = ({ courseId, handleNavigation }) => {
             </div>
           ))}
           {!showScore && <button type="submit" className="submit-button">Submit Quiz</button>}
-          {showScore && <div className="score-container">Your Score: {Math.round(scoreStudent)}%</div>}
+          {showScore && <div className="score-container">Your Score: {Math.round(resultScore)}%</div>}
         </form>
       )}
     </div>

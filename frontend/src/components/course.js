@@ -2,11 +2,12 @@ import React, { useContext } from 'react';
 import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBBtn } from 'mdb-react-ui-kit';
 import { StoreContext } from '../context/StoreContext';
 
-const Course = ({ handleNavigation }) => {
-  const { courseList } = useContext(StoreContext);
+const Course = ({handleNavigation}) => {
+  const {courseList}=useContext(StoreContext);
+
 
   const handleCourseClick = (courseId) => {
-    handleNavigation('oneCourse', courseId);
+    handleNavigation('oneCourse',courseId);
   };
 
   // Debug: Log courseList to verify data

@@ -37,4 +37,19 @@ res.status(500).json({success:false,message:"error score"})
         res.status(500).json({ success: false, message: "Error getting cart" });
     }
 }
-module.exports={addToScore,getScoreOneStudent};
+const removeScore=async(req,res)=>{
+   
+    try{
+const studentData=await studentModel.findById(req.body.studentId);
+const scoreData=await studentData.score;
+
+  delete scoreData[req.body.courseId]
+
+await studentModel.findByIdAndUpdate(req.body.studentId,{score:scoreData});
+res.status(200).json({success:true,message:"remove score",data:scoreData});
+    } 
+    catch(error){
+res.status(500).json({success:false,message:"error score"})
+    }
+}
+module.exports={addToScore,getScoreOneStudent,removeScore};
