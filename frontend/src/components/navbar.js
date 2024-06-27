@@ -46,6 +46,7 @@ const Navbar = ({ handleNavigation, setShowLogin }) => {
             <div className="logged-in-section">
               <button className='nav-item' onClick={() => handleNavigation('profile')}>Profile</button>
               <button className='nav-item' onClick={handleLogout}>Logout</button>
+
             </div>
           ) : (
             <button className="nav-item-btn" onClick={() => setShowLogin(true)}>LogIn</button>

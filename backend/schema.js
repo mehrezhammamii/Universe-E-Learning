@@ -15,7 +15,4 @@ const courseSchema = new mongoose.Schema({
     picture : {type: String},
     quiz : {type : Array}
 });
-
-
-
 module.exports = { studentSchema, courseSchema };

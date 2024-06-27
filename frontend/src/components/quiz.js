@@ -45,7 +45,7 @@ else{
   
     event.preventDefault();
    await deleteScore();
-
+let score=0;
    for (const [index, quizItem] of quizData.quiz.entries()) {
     const questionIndex = index.toString();
     const correctAnswer = Object.entries(quizItem)[0][1].find(answer => answer[Object.keys(answer)[0]] === true);
@@ -58,14 +58,14 @@ else{
         
 
         await addToScore(courseId);
+        score++;
     }
 }
     console.log("scorestud",scoreStudent);
-    const calculatedScore=scoreStudent[courseId]?(scoreStudent[courseId]*100)/quizData.quiz.length:0;
-   console.log("calcuatedscore",calculatedScore);
+    const calculatedScore=score?(score*100)/quizData.quiz.length:0;
+    console.log("calcuatedscore",calculatedScore);
     setResultScore(calculatedScore);
     setShowScore(true); 
-
   };
 
   return (
