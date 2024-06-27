@@ -10,15 +10,10 @@ const StoreContextPrivider = ({children}) => {
     if (token) {
        
         try {
-          setScoreStudent(prev => {
-            const newScore = { ...prev };
-            if (!newScore[courseId]) {
-                newScore[courseId] = 1;
-            } else {
-                newScore[courseId] += 1;
-            }
-            return newScore;
-        });
+         
+          
+          
+        
             await axios.post(url + "/api/score/add", { courseId }, { headers: { token } });
             console.log("Score added successfully");
         } catch (error) {
