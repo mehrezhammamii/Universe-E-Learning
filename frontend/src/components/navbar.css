@@ -1,3 +1,4 @@
+/* Navbar Component Styles */
 .navbar {
   padding: 20px;
   background-color: white;
@@ -13,6 +14,7 @@
 .logo {
   width: 100px;
   height: auto;
+  cursor: pointer;
 }
 
 .nav-links {
@@ -24,7 +26,7 @@
 .auth-links {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px; /* Increased gap between buttons */
   padding-right: 60px; /* Adjust this value to position the auth links properly */
 }
 
@@ -33,40 +35,74 @@
   font-weight: medium;
   color: black;
   cursor: pointer;
-  
+  position: relative;
+  overflow: hidden;
 }
+
+.nav-item::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: -100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease;
+}
+
+.nav-item:hover::before {
+  left: 0;
+}
+
 .nav-item-btn {
   margin-left: 20px;
 }
 
-.profile-img {
-  width: 40px; /* Adjust the size as needed */
-  height: 40px; /* Adjust the size as needed */
+.logged-in-section {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Increased gap between buttons */
+}
+
+.logged-in-section button {
+  background-color: #f0f0f0; /* Default background color (between grey and white) */
+  color: #333; /* Dark grey text color */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Animation for hover effect */
+  font-size: 1.2rem; /* Increased font size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logged-in-section .profile-img {
+  width: 50px; /* Adjust the size as needed */
+  height: 50px; /* Adjust the size as needed */
   border-radius: 50%; /* Makes the image circular */
   cursor: pointer; /* Indicates the image is clickable */
-  margin-right: 25px;
-  justify-content: space-between;
-  
-  margin-left: 20px;
-}
-
-.upload-form {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-}
-
-.upload-form input {
-  margin-bottom: 10px;
-}
-
-.upload-form button {
   margin-right: 10px;
+  justify-content: space-between;
+  margin-left: 10px;
+  transition: transform 0.3s ease, background-color 0.3s ease; /* Animation for hover effect */
+}
+
+.logged-in-section .profile-img:hover {
+  transform: scale(1.1); /* Enlarge image on hover */
+  background-color: #e0e0e0; /* Lighter background color on hover */
+}
+
+.logged-in-section .logout-btn {
+  background-color: #007bff; /* Blue color */
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Animation for hover effect */
+}
+
+.logged-in-section .logout-btn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: scale(1.05);
 }

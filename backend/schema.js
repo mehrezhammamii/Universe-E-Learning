@@ -14,8 +14,7 @@ const courseSchema = new mongoose.Schema({
     price : {type : Number,required : true},
     quiz : {type : Array,required : true},
     picture : {type: String},
-    video : {type: String},
-    score : {type : Number}
+    video : {type: String}
 });
 
 

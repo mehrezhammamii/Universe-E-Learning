@@ -22,7 +22,9 @@ res.status(200).json({success:true,message:"added to score"});
     catch(error){
 res.status(500).json({success:false,message:"error score"})
     }
-}
+};
+
+
   const getScoreOneStudent=async (req,res)=>{
     console.log("the student has ", req.body.studentId);
     try {

@@ -1,0 +1,158 @@
+/* Profile Component Styles */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease; /* Animation for hover effect */
+  }
+  
+  .profile-img:hover {
+    transform: scale(1.1); /* Enlarge image on hover */
+  }
+  
+  .profile-body {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .profile-section {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .profile-course {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  /* Navbar Component Styles */
+  .navbar {
+    padding: 20px;
+    background-color: white;
+  }
+  
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 60px;
+  }
+  
+  .logo {
+    width: 100px;
+    height: auto;
+    cursor: pointer;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 20px;
+    margin-left: 80px;
+  }
+  
+  .auth-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-right: 60px; /* Adjust this value to position the auth links properly */
+  }
+  
+  .nav-item {
+    font-size: 1.5rem;
+    font-weight: medium;
+    color: black;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .nav-item::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: -100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease;
+  }
+  
+  .nav-item:hover::before {
+    left: 0;
+  }
+  
+  .nav-item-btn {
+    margin-left: 20px;
+    background-color: #f0f0f0; /* Elegant color between grey and white */
+    color: black; /* Adjust text color for visibility */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .nav-item-btn:hover {
+    background-color: #d8d8d8; /* Darken on hover */
+    transform: scale(1.05);
+  }
+  
+  .profile-imgg {
+    width: 35px; /* Adjust the size as needed */
+    height: 35px; /* Adjust the size as needed */
+    border-radius: 50%; /* Makes the image circular */
+    cursor: pointer; /* Indicates the image is clickable */
+    margin-right: 25px;
+    justify-content: space-between;
+    margin-left: 20px;
+    transition: transform 0.3s ease; /* Animation for hover effect */
+  }
+  
+  .profile-imgg:hover {
+    transform: scale(1.1); /* Enlarge image on hover */
+  }
+  
+  .upload-form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  .upload-form input {
+    margin-bottom: 10px;
+  }
+  
+  .upload-form button {
+    margin-right: 10px;
+  }
+  
+  
