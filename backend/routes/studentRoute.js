@@ -8,5 +8,5 @@ studentRouter.post('/register', studentController.registerStudent);
 studentRouter.post('/login', studentController.loginStudent);
 studentRouter.post('/update-profile-pic', authenticateToken, studentController.updateProfilePic);
 studentRouter.get('/:id',studentController.getStudentData);
-studentRouter.post('/add', studentController.addQuizScore)
+
 module.exports = studentRouter;

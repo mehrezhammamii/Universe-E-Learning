@@ -44,8 +44,7 @@ const removeScore=async(req,res)=>{
 const studentData=await studentModel.findById(req.body.studentId);
 const scoreData=await studentData.score;
 
-  delete scoreData[req.body.courseId]
-
+delete scoreData[req.body.courseId]
 await studentModel.findByIdAndUpdate(req.body.studentId,{score:scoreData});
 res.status(200).json({success:true,message:"remove score",data:scoreData});
     } 

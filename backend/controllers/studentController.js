@@ -7,30 +7,7 @@ const validator = require('validator');
 const createToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET);
 };
-
-
-const addQuizScore = async (req, res) => {
-    try {
-      const { studentId, courseId, score } = req.body;
-  
-      const student = await Student.findById(studentId);
-      if (!student) {
-        return res.status(404).json({ message: 'Student not found' });
-      }
-  
-      // Save the score and course
-      student.score[courseId] = score;
-      student.courses[courseId] = true; // Assuming the value doesn't matter, just the presence in the object
-  
-      await student.save();
-  
-      res.status(200).json({ message: 'Score added successfully', student });
-    } catch (error) {
-      res.status(500).json({ message: 'Something went wrong' });
-    }
-  };
-  
-  const getStudentData = async (req, res) => {
+    const getStudentData = async (req, res) => {
     try {
       const student = await Student.findById(req.params.id);
       if (!student) {
@@ -109,4 +86,4 @@ const updateProfilePic = async (req, res) => {
 
 
 
-module.exports = { registerStudent, loginStudent, updateProfilePic, getStudentData, addQuizScore };
+module.exports = { registerStudent, loginStudent, updateProfilePic, getStudentData };

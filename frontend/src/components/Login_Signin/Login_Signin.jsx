@@ -19,43 +19,48 @@ const Login_Signin = ({ setShowLogin }) => {
             [name]: value
         }));
     };
-
-    const onLogin = async (e) => {
-        e.preventDefault();
-        let newUrl = url;
-        if (currState === "Login") {
-            newUrl += "/api/student/login";
-        } else {
-            newUrl += "/api/student/register";
-        }
-        try {
-            const response = await axios.post(newUrl, data);
-            if (response.data.success) {
-                setToken(response.data.token);
-                console.log("token and data", response.data.token);
-                localStorage.setItem("token", response.data.token);
-                alert(response.data.message);
-            } else {
-                alert(response.data.message);
-            }
-            setData({
+  
+  //after login we will generate token for student to use him like an id  for anything about student
+  //and store it in localstorage so every time he login we generate token for each student login  
+    const onLogin=async (e)=>{
+      e.preventDefault();
+      let newUrl = url;
+      if (currState === "Login") {
+          newUrl += "/api/student/login";
+      } else {
+          newUrl += "/api/student/register";
+      }
+      console.log("datais", data);
+      
+      try {
+          const response = await axios.post(newUrl, data);
+          if (response.data.success) {
+              setToken(response.data.token);
+              console.log("token and data", response.data.token);
+              localStorage.setItem("token", response.data.token);
+              alert(response.data.message);
+              setData({
                 name: "",
                 email: "",
                 password: ""
             });
-        } catch (error) {
-            if (error.response) {
-                console.error("Server responded with an error:", error.response.data);
-                alert(error.response.data.message || "An error occurred");
-            } else if (error.request) {
-                console.error("No response received:", error.request);
-                alert("No response from the server. Please try again later.");
-            } else {
-                console.error("Error setting up the request:", error.message);
-                alert("An error occurred. Please try again.");
-            }
-        }
-    };
+          } else {
+             
+              console.log("datais bad", data);
+              alert(response.data.message);
+          }
+      } catch (error) {
+         console.log("error",error);
+         
+         if (error.response && error.response.data) {
+          alert(error.response.data.error);
+      } else {
+          alert("Login failed. Please check your email and password.");
+      }
+          }
+      }
+      
+    
 
     return (
         <div className='login-popup'>
