@@ -29,7 +29,6 @@ const StoreContextPrivider = ({children}) => {
              const fetchCoursList=async ()=>{
               const response=await axios.get(url+"/api/course")
               setCourseList(response.data);
-              console.log("res",response.data);
               }
               const loadScoreStudent=async(token)=>{
 const response= await axios.get(url+"/api/score/get",{headers:{token}});
@@ -49,7 +48,6 @@ console.log("token of student login is ",localStorage.getItem("token"));
 }
 }
 loadData();
-console.log("score student",scoreStudent);
 },[])
  const contextValue={
     token,
