@@ -7,7 +7,7 @@ import { StoreContext } from '../context/StoreContext';
 const Navbar = ({ handleNavigation, setShowLogin }) => {
   const { token, setToken } = useContext(StoreContext);
  
-
+  
 
   const handleLogout = () => {
     localStorage.removeItem('token');

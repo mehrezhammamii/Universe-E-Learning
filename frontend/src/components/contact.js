@@ -68,11 +68,11 @@ alert("success");
         <MDBValidationItem feedback=''>
           <MDBCheckbox wrapperClass='d-flex justify-content-center' label='Send me copy' />
         </MDBValidationItem>
-
         <MDBBtn type='submit' color='primary' block className='my-4'>
-          Send
+        
         </MDBBtn>
       </MDBValidation>
+      
     </div>
   );
 };

@@ -19,6 +19,7 @@ const[image,setImage]=useState("");
         }
 
         const dataCourse = {
+          quiz:course.quiz,
           courseName: course.courseName,
           description: course.description,
           price: course.price,
@@ -89,7 +90,7 @@ defaultProfilePic} alt="Profile" />
                   <h3 className="course-name">course name:{course.courseName}</h3>
                   <p className="course-description">description:{course.description}</p>
                   <p className="course-price">Price: ${course.price}</p>
-                  <p className="course-score">Score: {course.score}</p>
+                  <p className="course-score">Score: {course.score+"/"+course.quiz.length}</p>
                 </div>
               ))}
             </div>

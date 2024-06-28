@@ -8,7 +8,7 @@ const StoreContextProvider = ({ children }) => {
   const url = "http://localhost:5000";
   const [courseList, setCourseList] = useState([]);
   const [scoreStudent, setScoreStudent] = useState({});
-
+  const [allCategory, setAllCategory] = useState([]);
   const addToScore = async (courseId) => {
     if (token) {
        
@@ -28,7 +28,18 @@ const StoreContextProvider = ({ children }) => {
   const fetchCourseList = async () => {
     try {
       const response = await axios.get(url + "/api/course");
-      setCourseList(response.data);
+      const courses = response.data;
+      setCourseList(courses);
+
+      const uniqueCategories = [];
+      courses.forEach(course => {
+        if (!uniqueCategories.includes(course.categorie
+        )) {
+          uniqueCategories.push(course.categorie);
+        }
+      });
+      setAllCategory(uniqueCategories);
+
     } catch (error) {
       console.error('Error fetching course list:', error);
     }
@@ -66,6 +77,7 @@ const StoreContextProvider = ({ children }) => {
     scoreStudent,
     setScoreStudent,
     addToScore,
+    allCategory,
   };
 
   return (

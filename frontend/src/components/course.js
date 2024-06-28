@@ -1,35 +1,54 @@
-import React, { useContext } from 'react';
+import React, { useContext,useEffect,useState } from 'react';
 import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBBtn } from 'mdb-react-ui-kit';
 import { StoreContext } from '../context/StoreContext';
 
 const Course = ({handleNavigation}) => {
-  const {courseList}=useContext(StoreContext);
-
+  const { courseList, allCategory } = useContext(StoreContext);
+  const [category, setCategory] = useState("all"); 
 
   const handleCourseClick = (courseId) => {
-    handleNavigation('oneCourse',courseId);
+    handleNavigation('oneCourse', courseId);
   };
-
-  // Debug: Log courseList to verify data
+useEffect(()=>{
+  console.log("category is",category);
+},[category])
+  
   console.log('courseList:', courseList);
 
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
-      {courseList.map((el) => (
-        <MDBCard key={el._id} style={{ maxWidth: '22rem', margin: '1rem' }}>
-          <MDBCardImage
-            src={el.picture}
-            position='top'
-            alt="image"
-            onClick={() => handleCourseClick(el._id)}
-          />
-          <MDBCardBody>
-            <MDBCardTitle onClick={() => handleCourseClick(el._id)}>{el.courseName}</MDBCardTitle>
-            <MDBCardText>${el.price}</MDBCardText>
-            <MDBBtn href='#'>Buy Now</MDBBtn>
-          </MDBCardBody>
-        </MDBCard>
-      ))}
+    <div>
+ 
+      <select value={category} onChange={(e) => setCategory(e.target.value)}>
+        <option value="all">All</option>
+        {allCategory.map((cat, index) => (
+          <option key={index} value={cat}>
+            {cat}
+          </option>
+        ))}
+      </select>
+
+      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
+        {courseList.map((el) => {
+          if (category === "all" || el.categorie === category) {
+            return (
+              <MDBCard key={el._id} style={{ maxWidth: '22rem', margin: '1rem' }}>
+                <MDBCardImage
+                  src={el.picture}
+                  position='top'
+                  alt="image"
+                  onClick={() => handleCourseClick(el._id)}
+                />
+                <MDBCardBody>
+                  <MDBCardTitle onClick={() => handleCourseClick(el._id)}>{el.courseName}</MDBCardTitle>
+                  <MDBCardText>${el.price}</MDBCardText>
+                  <MDBBtn href='#'>Buy Now</MDBBtn>
+                </MDBCardBody>
+              </MDBCard>
+            );
+          }
+          return null; 
+        })}
+      </div>
     </div>
   );
 };
