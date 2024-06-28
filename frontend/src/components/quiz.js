@@ -55,7 +55,7 @@ let score=0;
 
     if (selectedAnswers[questionIndex] === Object.keys(correctAnswer)[0]) {
         console.log("courseId", courseId);
-        
+      
 
         await addToScore(courseId);
         score++;
@@ -66,6 +66,11 @@ let score=0;
     console.log("calcuatedscore",calculatedScore);
     setResultScore(calculatedScore);
     setShowScore(true); 
+    if(calculatedScore>=50){
+      alert("you won this test ");
+    }else{
+      alert("sorry you fail u need stranger your knowledge and back again ")
+    }
   };
   return (
     <div className="quiz-container">
