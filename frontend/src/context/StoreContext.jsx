@@ -11,7 +11,17 @@ const StoreContextProvider = ({ children }) => {
 
   const addToScore = async (courseId) => {
     if (token) {
-      await axios.post(url + "/api/score/add", { courseId }, { headers: { token } });
+       
+        try {
+         
+          
+          
+        
+            await axios.post(url + "/api/score/add", { courseId }, { headers: { token } });
+            console.log("Score added successfully");
+        } catch (error) {
+            console.error("Error adding score:", error);
+        }
     }
   };
 
@@ -46,7 +56,7 @@ const StoreContextProvider = ({ children }) => {
     };
     loadData();
     console.log("Score student", scoreStudent);
-  }, []);
+  }, [token]);
 
   const contextValue = {
     token,

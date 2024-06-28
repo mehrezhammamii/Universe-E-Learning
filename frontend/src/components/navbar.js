@@ -2,28 +2,12 @@ import React, { useContext, useState, useEffect } from 'react';
 import './navbar.css';
 import logo from './photo/logo.jpg';
 import { StoreContext } from '../context/StoreContext';
-import defaultProfilePic from './photo/blank-profile-picture-973460_1280.webp'; // Assuming this is the path to your default profile picture
-import axios from 'axios';
+
 
 const Navbar = ({ handleNavigation, setShowLogin }) => {
-  const { token, setToken, url } = useContext(StoreContext);
-  const [profilePic, setProfilePic] = useState("");
+  const { token, setToken } = useContext(StoreContext);
+ 
 
-  useEffect(() => {
-    const fetchProfilePic = async () => {
-      if (token) {
-        try {
-          const userResponse = await axios.get(`${url}/api/student/profile-pic`, { headers: { token } });
-          if (userResponse.data.profilePic) {
-            setProfilePic(userResponse.data.profilePic);
-          }
-        } catch (error) {
-          console.error('Error fetching profile picture:', error);
-        }
-      }
-    };
-    fetchProfilePic();
-  }, [token, url]);
 
   const handleLogout = () => {
     localStorage.removeItem('token');

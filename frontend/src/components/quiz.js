@@ -3,11 +3,11 @@ import axios from 'axios';
 import './quiz.css';
 import { StoreContext } from '../context/StoreContext';
 
-const QuizPage = ({ courseId, handleNavigation }) => {
+  const QuizPage = ({ courseId, handleNavigation }) => {
   const {scoreStudent,setScoreStudent,addToScore,url,token}=useContext(StoreContext)
   const [quizData, setQuizData] = useState(null);
   const [selectedAnswers, setSelectedAnswers] = useState({}); 
-  const [showScore,setShowScore] = useState(false); 
+  const [showScore,setShowScore] = useState(false);
   const[resultScore,setResultScore]=useState(null);
   useEffect(() => {
     const fetchQuizData = async () => {
@@ -67,7 +67,6 @@ let score=0;
     setResultScore(calculatedScore);
     setShowScore(true); 
   };
-
   return (
     <div className="quiz-container">
       <h2>Quiz Page</h2>

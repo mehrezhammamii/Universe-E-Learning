@@ -4,7 +4,18 @@ const studentSchema = new mongoose.Schema({
     email: { type: String, required: true },
     password: { type: String, required: true },
     score: { type: Object, default: {} },
-    profilePic: { type: String, default: null }
+    profilePic: { 
+        secure_url:{
+        type:String,
+        required:true
+        },
+        public_id:{
+            type:String,
+            required:true
+        }
+    },
+    
+ 
 }, { minimize: false });
 
 const courseSchema = new mongoose.Schema({
