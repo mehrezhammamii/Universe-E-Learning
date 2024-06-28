@@ -2,15 +2,21 @@ import React, { useContext } from 'react';
 import { StoreContext } from '../context/StoreContext';
 import "./oneCourse.css"
 
-const OneCourse = ({ courseId,handleNavigation }) => {
-  const { courseList } = useContext(StoreContext);
+const OneCourse = ({ courseId,handleNavigation,setShowLogin }) => {
+  const { courseList,token } = useContext(StoreContext);
   const courseOne = courseList.find((el) => el._id === courseId);
 
   if (!courseOne) return <div>Course not found</div>;
 
   const handleQuizClick = () => {
+if(token){
     handleNavigation('quizPage', courseId);
-  };
+}
+else{
+  alert("you should login first");
+  setShowLogin(true);
+}
+};
   
   return (
     <>
