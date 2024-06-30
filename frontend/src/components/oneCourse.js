@@ -11,7 +11,7 @@ const OneCourse = ({ courseId,handleNavigation,setShowLogin }) => {
   const handleQuizClick = () => {
 if(token){
 const checkScore=scoreStudent[courseOne._id]?(scoreStudent[courseOne._id]*100)/courseOne.quiz.length:0
-if(checkScore<=50){
+if(checkScore<50){
     handleNavigation('quizPage', courseId);
 }
 else{

@@ -71,9 +71,9 @@ exports.addExerciseForCourse=async(req,res)=>{
 
         await Course.findByIdAndUpdate(id, { $push: { quiz: exercise } });
 
-        res.status(200).json({ message: 'Quiz updated successfully' });
+        res.status(200).json({ message: 'Quiz updated successfully',success:true });
     } catch (error) {
         console.error("Error updating quiz:", error.message);
-        res.status(500).json({ message: 'Internal server error' });
+        res.status(500).json({ message: 'Internal server error',success:false });
     }
 };
