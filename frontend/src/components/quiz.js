@@ -3,6 +3,7 @@ import axios from 'axios';
 import './quiz.css';
 import { StoreContext } from '../context/StoreContext';
 
+<<<<<<< HEAD
 const QuizPage = ({ courseId, handleNavigation }) => {
   const { scoreStudent, setScoreStudent, addToScore, url, token } = useContext(StoreContext);
   const [quizData, setQuizData] = useState(null);
@@ -10,6 +11,14 @@ const QuizPage = ({ courseId, handleNavigation }) => {
   const [showScore, setShowScore] = useState(false); 
   const [resultScore, setResultScore] = useState(null);
 
+=======
+  const QuizPage = ({ courseId, handleNavigation }) => {
+  const {scoreStudent,setScoreStudent,addToScore,url,token}=useContext(StoreContext)
+  const [quizData, setQuizData] = useState(null);
+  const [selectedAnswers, setSelectedAnswers] = useState({}); 
+  const [showScore,setShowScore] = useState(false);
+  const[resultScore,setResultScore]=useState(null);
+>>>>>>> e171b143fd2989ae97701f6d1a155f11e8bee129
   useEffect(() => {
     const fetchQuizData = async () => {
       try {
@@ -48,9 +57,18 @@ const QuizPage = ({ courseId, handleNavigation }) => {
     await deleteScore();
     let score = 0;
 
+<<<<<<< HEAD
     for (const [index, quizItem] of quizData.quiz.entries()) {
       const questionIndex = index.toString();
       const correctAnswer = Object.entries(quizItem)[0][1].find(answer => answer[Object.keys(answer)[0]] === true);
+=======
+    console.log("correctedans", correctAnswer);
+    console.log("selectans", selectedAnswers[questionIndex]);
+
+    if (selectedAnswers[questionIndex] === Object.keys(correctAnswer)[0]) {
+        console.log("courseId", courseId);
+      
+>>>>>>> e171b143fd2989ae97701f6d1a155f11e8bee129
 
       if (selectedAnswers[questionIndex] === Object.keys(correctAnswer)[0]) {
         await addToScore(courseId);
@@ -61,8 +79,12 @@ const QuizPage = ({ courseId, handleNavigation }) => {
     const calculatedScore = score ? (score * 100) / quizData.quiz.length : 0;
     setResultScore(calculatedScore);
     setShowScore(true); 
+    if(calculatedScore>=50){
+      alert("you won this test ");
+    }else{
+      alert("sorry you fail u need stranger your knowledge and back again ")
+    }
   };
-
   return (
     <div className="quiz-container">
       <h2>Quiz Page</h2>

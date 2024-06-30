@@ -4,6 +4,7 @@ const Student = require('../models/studentModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const validator = require('validator');
+const cloudinary=require("../utils/cloudInary")
 const createToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET);
 };
@@ -72,14 +73,23 @@ const registerStudent = async (req, res) => {
 };
 
 const updateProfilePic = async (req, res) => {
-    const { imageUrl } = req.body;
-    const userId = req.user.id; // Assuming authenticateToken middleware sets req.user.id
-  
-    try {
-      // Update the profile picture URL in your database (assuming Mongoose)
-      await Student.findByIdAndUpdate(userId, { profilePic: imageUrl });
-  
-      res.json({ success: true, message: 'Profile picture updated successfully.', imageUrl });
+    console.log("file",req.file.path);
+    try   {
+        const Findstudent = await Student.findById(req.body.studentId);
+        if (!Findstudent) {
+          return res.status(404).json({ success: false, message: 'Student not found' });
+        }
+    
+      
+        if (Findstudent.profilePic && Findstudent.profilePic.public_id) {
+          await cloudinary.uploader.destroy(Findstudent.profilePic.public_id);
+        }
+const result=await cloudinary.uploader.upload( req.file.path,{folder:"uploads"})
+   const student=   await Student.findByIdAndUpdate(req.body.studentId, 
+    { profilePic:{secure_url:result.secure_url,public_id:result.public_id} });
+  console.log("result is",result);
+  console.log("student is",student);
+      res.json({ success: true, message: 'Profile picture updated successfully.', student });
     } catch (error) {
       console.error('Error updating profile picture:', error);
       res.status(500).json({ success: false, message: 'Failed to update profile picture.' });

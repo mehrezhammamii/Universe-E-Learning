@@ -39,7 +39,8 @@ const App = () => {
             case 'sign-up':
                 return <SignUp />;
             case 'oneCourse':
-                return <OneCourse courseId={selectedCourse} handleNavigation={handleNavigation} />;
+                return <OneCourse courseId={selectedCourse} handleNavigation={handleNavigation} 
+                setShowLogin={setShowLogin}/>;
             case 'quizPage':
                 return <QuizPage courseId={selectedCourse} handleNavigation={handleNavigation} />;
             case 'profile': // Add case for Profile
@@ -51,7 +52,7 @@ const App = () => {
 
     return (
       <div>
-        {showLogin ? <Login_Signin setShowLogin={setShowLogin} /> : <></>}
+        {showLogin ? <Login_Signin setShowLogin={setShowLogin} handleNavigation={handleNavigation}/> : <></>}
         <div className="app">
             <Navbar handleNavigation={handleNavigation} setShowLogin={setShowLogin} />
             <div className="content">

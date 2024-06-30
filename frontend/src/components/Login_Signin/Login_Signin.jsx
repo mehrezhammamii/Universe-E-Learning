@@ -3,7 +3,7 @@ import "./Login_Signin.css"
 import axios from "axios";
 import { StoreContext } from '../../context/StoreContext';
 
-const Login_Signin = ({ setShowLogin }) => {
+const Login_Signin = ({ setShowLogin,handleNavigation }) => {
     const [currState, setCurrState] = useState("Login");
     const { url, setToken } = useContext(StoreContext);
     const [data, setData] = useState({
@@ -39,11 +39,8 @@ const Login_Signin = ({ setShowLogin }) => {
               console.log("token and data", response.data.token);
               localStorage.setItem("token", response.data.token);
               alert(response.data.message);
-              setData({
-                name: "",
-                email: "",
-                password: ""
-            });
+              handleNavigation("course");
+              setShowLogin(false);
           } else {
              
               console.log("datais bad", data);
