@@ -1,6 +1,6 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { StoreContext } from '../context/StoreContext';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import { StoreContext } from '../context/StoreContext';
 import defaultProfilePic from './photo/blank-profile-picture-973460_1280.webp';
 import './profile.css';
 
@@ -34,7 +34,7 @@ const[image,setImage]=useState("");
     setCategorysCourseOfStudent(categoryMap);
   };
   useEffect(() => {
-    const fetchProfileData = async () => {
+    const fetchStudentData = async () => {
       if (token) {
         try {
           const response = await axios.get(`${url}/api/student/one`, { headers: { token } });
@@ -42,11 +42,11 @@ const[image,setImage]=useState("");
           categorizeCourses();
           console.log("student is",response.data.student);
         } catch (error) {
-          console.error('Error fetching profile data:', error);
+          console.error('Error fetching student data:', error);
         }
       }
     };
-    fetchProfileData();
+    fetchStudentData();
   }, [token]);
 
  const updateProfilePicture= async()=>{

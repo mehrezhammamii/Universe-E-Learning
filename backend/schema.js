@@ -23,8 +23,7 @@ const courseSchema = new mongoose.Schema({
     categorie: { type: String, required: true },
     description: { type: String, required: true },
     price : {type : Number,required : true},
-    quiz : {type : Array,required : true},
     picture : {type: String},
-    video : {type: String}
+    quiz : {type : Array}
 });
 module.exports = { studentSchema, courseSchema };

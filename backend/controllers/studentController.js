@@ -8,7 +8,9 @@ const cloudinary=require("../utils/cloudInary")
 const createToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET);
 };
-    const getStudentData = async (req, res) => {
+
+  
+  const getStudentData = async (req, res) => {
     try {
       const student = await Student.findById(req.body.studentId);
       if (!student) {

@@ -11,8 +11,8 @@ exports.getCourse = async (req, res) => {
 
 exports.addCourse = async (req, res) => {
     try {
-        const { courseName, categorie, description, price, picture, video,quiz, score } = req.body; // Include description in destructuring
-        const course = new Course({ courseName, categorie, description, price, picture, video,quiz, score }); // Pass description to Course constructor
+        const { courseName, categorie, description, price, picture, } = req.body; // Include description in destructuring
+        const course = new Course({ courseName, categorie, description, price, picture}); // Pass description to Course constructor
         await course.save();
         console.log(req.body);
         res.status(201).json({ message: 'Course added successfully', course });
@@ -58,22 +58,24 @@ exports.deleteCourse = async (req, res) => {
         res.status(500).json({ message: 'Error deleting course' });
     }
 };
-exports.addExerciseForCourse=async(req,res)=>{
-    const id = req.params.id;
-    const exercise = req.body.exercise;
 
-    try {
-        const course = await Course.findById(id);
 
-        if (!course) {
-            return res.status(404).json({ message: 'Course not found' });
-        }
+exports.addExerciseForCourse = async (req, res) => {
+  const id = req.params.id;
+  const exercise = req.body.exercise;
 
-        await Course.findByIdAndUpdate(id, { $push: { quiz: exercise } });
+  try {
+    const course = await Course.findById(id);
 
-        res.status(200).json({ message: 'Quiz updated successfully',success:true });
-    } catch (error) {
-        console.error("Error updating quiz:", error.message);
-        res.status(500).json({ message: 'Internal server error',success:false });
+    if (!course) {
+      return res.status(404).json({ message: 'Course not found' });
     }
+
+    await Course.findByIdAndUpdate(id, { $push: { quiz:  exercise  } });
+
+    res.status(200).json({ message: 'Quizzes updated successfully' });
+  } catch (error) {
+    console.error("Error updating quizzes:", error.message);
+    res.status(500).json({ message: 'Internal server error' });
+  }
 };

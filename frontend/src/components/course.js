@@ -41,7 +41,6 @@ const Course = ({handleNavigation}) => {
                   <MDBCardText>${el.price}</MDBCardText>
                   <MDBBtn href='#'>Buy Now</MDBBtn>
                 </MDBCardBody>
-                <button onClick={()=>handleNavigation("exercise",el._id)}>add exercise</button>
               </MDBCard>
             );
           }

@@ -32,38 +32,32 @@ import { StoreContext } from '../context/StoreContext';
       [questionIndex]: event.target.value, 
     });
   };
-const deleteScore= async()=>{
-const response=await axios.post(url+"/api/score/remove",{courseId},{headers:{token}})
-if(response.data.success){
-console.log("deleted good ",response.data.data);
-}
-else{
-  console.log("bad bro ");
-}
-}
-  const handleQuizSubmit = async(event) => {
-  
+
+  const deleteScore = async () => {
+    const response = await axios.post(`${url}/api/score/remove`, { courseId }, { headers: { token } });
+    if (response.data.success) {
+      console.log("Deleted successfully: ", response.data.data);
+    } else {
+      console.error("Deletion failed.");
+    }
+  };
+
+  const handleQuizSubmit = async (event) => {
     event.preventDefault();
-   await deleteScore();
-let score=0;
-   for (const [index, quizItem] of quizData.quiz.entries()) {
-    const questionIndex = index.toString();
-    const correctAnswer = Object.entries(quizItem)[0][1].find(answer => answer[Object.keys(answer)[0]] === true);
+    await deleteScore();
+    let score = 0;
 
-    console.log("correctedans", correctAnswer);
-    console.log("selectans", selectedAnswers[questionIndex]);
+    for (const [index, quizItem] of quizData.quiz.entries()) {
+      const questionIndex = index.toString();
+      const correctAnswer = Object.entries(quizItem)[0][1].find(answer => answer[Object.keys(answer)[0]] === true);
 
-    if (selectedAnswers[questionIndex] === Object.keys(correctAnswer)[0]) {
-        console.log("courseId", courseId);
-      
-
+      if (selectedAnswers[questionIndex] === Object.keys(correctAnswer)[0]) {
         await addToScore(courseId);
         score++;
+      }
     }
-}
-    console.log("scorestud",scoreStudent);
-    const calculatedScore=score?(score*100)/quizData.quiz.length:0;
-    console.log("calcuatedscore",calculatedScore);
+
+    const calculatedScore = score ? (score * 100) / quizData.quiz.length : 0;
     setResultScore(calculatedScore);
     setShowScore(true); 
     if(calculatedScore>=50){
@@ -76,7 +70,7 @@ let score=0;
     <div className="quiz-container">
       <h2>Quiz Page</h2>
       <button onClick={handleBackButtonClick}>Back to Course</button>
-      <button onClick={()=>addToScore(courseId)}>addscore</button>
+      <button onClick={() => addToScore(courseId)}>Add Score</button>
       {quizData && quizData.quiz && (
         <form onSubmit={handleQuizSubmit}>
           {quizData.quiz.map((quizItem, index) => (
