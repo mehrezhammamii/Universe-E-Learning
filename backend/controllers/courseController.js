@@ -11,8 +11,8 @@ exports.getCourse = async (req, res) => {
 
 exports.addCourse = async (req, res) => {
     try {
-        const { courseName, categorie, description, price, picture, } = req.body; // Include description in destructuring
-        const course = new Course({ courseName, categorie, description, price, picture}); // Pass description to Course constructor
+        const { courseName, categorie, description, price, picture,video } = req.body; 
+        const course = new Course({ courseName, categorie, description, price, picture,video}); 
         await course.save();
         console.log(req.body);
         res.status(201).json({ message: 'Course added successfully', course });

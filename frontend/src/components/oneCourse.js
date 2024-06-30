@@ -7,8 +7,7 @@ const OneCourse = ({ courseId,handleNavigation,setShowLogin }) => {
   const courseOne = courseList.find((el) => el._id === courseId);
 
   if (!courseOne) return <div>Course not found</div>;
-
-  const handleQuizClick = () => {
+const handleQuizClick = () => {
 if(token){
 const checkScore=scoreStudent[courseOne._id]?(scoreStudent[courseOne._id]*100)/courseOne.quiz.length:0
 if(checkScore<50){
