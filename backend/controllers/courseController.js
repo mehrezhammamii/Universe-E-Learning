@@ -11,8 +11,8 @@ exports.getCourse = async (req, res) => {
 
 exports.addCourse = async (req, res) => {
     try {
-        const { courseName, categorie, description, price, picture, } = req.body; // Include description in destructuring
-        const course = new Course({ courseName, categorie, description, price, picture}); // Pass description to Course constructor
+        const { courseName, categorie, description, price, picture,video } = req.body; 
+        const course = new Course({ courseName, categorie, description, price, picture,video}); 
         await course.save();
         console.log(req.body);
         res.status(201).json({ message: 'Course added successfully', course });
@@ -58,11 +58,11 @@ exports.deleteCourse = async (req, res) => {
         res.status(500).json({ message: 'Error deleting course' });
     }
 };
-const { Course } = require('../models'); // Assuming Course model import
+
 
 exports.addExerciseForCourse = async (req, res) => {
   const id = req.params.id;
-  const quizzes = req.body.quiz;
+  const exercise = req.body.exercise;
 
   try {
     const course = await Course.findById(id);
@@ -71,7 +71,7 @@ exports.addExerciseForCourse = async (req, res) => {
       return res.status(404).json({ message: 'Course not found' });
     }
 
-    await Course.findByIdAndUpdate(id, { $push: { quiz: { $each: quizzes } } });
+    await Course.findByIdAndUpdate(id, { $push: { quiz:  exercise  } });
 
     res.status(200).json({ message: 'Quizzes updated successfully' });
   } catch (error) {

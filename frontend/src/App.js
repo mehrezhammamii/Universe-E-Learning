@@ -13,7 +13,7 @@ import Profile from './components/profile'; // Import Profile component
 import './App.css'; 
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import Login_Signin from './components/Login_Signin/Login_Signin';
-import Exercise from './components/exercise';
+
 
 const App = () => {
     const [currentView, setCurrentView] = useState('home');
@@ -44,11 +44,9 @@ const App = () => {
                 setShowLogin={setShowLogin}/>;
             case 'quizPage':
                 return <QuizPage courseId={selectedCourse} handleNavigation={handleNavigation} />;
-            case 'profile': // Add case for Profile
+            case 'profile': 
                 return <Profile handleNavigation={handleNavigation} />;
-                case 'exercise':
-                    return< Exercise selectedCourse={selectedCourse}/>
-                default:
+                             default:
                 return <Home />;
         }
     };

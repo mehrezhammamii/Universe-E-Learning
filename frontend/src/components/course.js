@@ -1,7 +1,7 @@
 import React, { useContext,useEffect,useState } from 'react';
 import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBBtn } from 'mdb-react-ui-kit';
 import { StoreContext } from '../context/StoreContext';
-import axios from 'axios';
+
 const Course = ({handleNavigation}) => {
   const { courseList, allCategory } = useContext(StoreContext);
   const [category, setCategory] = useState("all"); 
@@ -41,7 +41,6 @@ const Course = ({handleNavigation}) => {
                   <MDBCardText>${el.price}</MDBCardText>
                   <MDBBtn href='#'>Buy Now</MDBBtn>
                 </MDBCardBody>
-                <button onClick={()=>handleNavigation("exercise",el._id)}>add exercise</button>
               </MDBCard>
             );
           }

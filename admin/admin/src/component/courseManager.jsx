@@ -4,7 +4,8 @@ import AddCourseForm from './addCourse';
 import AddQuizForm from './addQuiz';
 import './courseManager.css'; // Import the CSS file for styling
 
-const CourseManager = () => {
+
+const CourseManager = ({handleNavigation}) => {
   const [courses, setCourses] = useState([]);
   const [selectedCourseId, setSelectedCourseId] = useState(null);
 
@@ -21,10 +22,7 @@ const CourseManager = () => {
     fetchCourses();
   }, []);
 
-  const handleSelectCourse = (courseId) => {
-    setSelectedCourseId(courseId);
-  };
-
+ 
   return (
     <div className="course-manager-container">
       <h2 className="course-manager-title">Course Manager</h2>
@@ -43,7 +41,7 @@ const CourseManager = () => {
             <p>Price: {course.price}</p>
             {course.picture && <img src={course.picture} alt={course.courseName} className="course-picture" />}
             <div className="course-item-buttons">
-              <button className="update" onClick={() => handleSelectCourse(course._id)}>Add Quiz</button>
+              <button className="update" onClick={() => handleNavigation("ex",course._id)}>Add Quiz</button>
             </div>
           </div>
         ))}
