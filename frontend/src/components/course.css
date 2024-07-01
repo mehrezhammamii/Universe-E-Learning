@@ -1,0 +1,46 @@
+.course-container {
+    padding: 20px;
+  }
+  
+  .filter-bar {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .category-select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
+    gap: 20px;
+    justify-items: center;
+  }
+  
+  .course-card {
+    width: 22rem; /* Fixed width for the card */
+    margin: 1rem;
+    transition: transform 0.3s;
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden; /* Ensure contents do not overflow */
+  }
+  
+  .course-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .course-image {
+    width: 100%; /* Image fills the card width */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensures the image covers the entire container */
+  }
+  
+  .MDBCardTitle, .MDBCardText {
+    cursor: pointer;
+  }
+  

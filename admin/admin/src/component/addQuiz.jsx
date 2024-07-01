@@ -14,6 +14,7 @@ const AddQuizForm = ({ courseId, fetchCourses }) => {
 
   const [exercise, setExercise] = useState(initialExerciseState);
   const [questionKey, setQuestionKey] = useState('Q9'); // State to manage the question key
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleAddQuiz = async () => {
     try {
@@ -21,6 +22,7 @@ const AddQuizForm = ({ courseId, fetchCourses }) => {
       console.log('Quiz added successfully');
       setExercise(initialExerciseState); // Reset the exercise form
       fetchCourses();
+      setShowPopup(false); // Close the popup after adding the quiz
     } catch (error) {
       console.error('Error adding quiz:', error);
     }
@@ -50,41 +52,54 @@ const AddQuizForm = ({ courseId, fetchCourses }) => {
     setExercise({ [questionKey]: initialExerciseState.Q9 });
   };
 
+  const openPopup = () => setShowPopup(true);
+  const closePopup = () => setShowPopup(false);
+
   return (
-    <div className="add-quiz-form">
-      <h2>Add Quiz</h2>
-      <div className="form-group">
-        <label>Question Key:</label>
-        <input
-          type="text"
-          value={questionKey} // Input field for the question key
-          onChange={handleQuestionKeyChange}
-          placeholder="Enter question key"
-        />
-        <button type="button" onClick={handleUpdateQuestionKey}>
-          Update Question Key
-        </button>
-      </div>
-      {exercise[questionKey]?.map((answer, index) => (
-        <div key={`answer-${index}`} className="answer-label">
-          Answer {index + 1}:
-          <input
-            type="text"
-            name={`answer-${index}`}
-            placeholder={`Answer ${index + 1}`}
-            value={Object.keys(answer)[0]} // Display the current key
-            onChange={(e) => handleExerciseChange(e, index)}
-          />
-          Correct?
-          <input
-            type="checkbox"
-            name={`correct-${index}`}
-            checked={answer.correct}
-            onChange={(e) => handleExerciseChange(e, index)}
-          />
+    <div>
+      <button type="button" onClick={openPopup}>Add Quiz</button>
+      {showPopup && (
+        <div className="popup-overlay">
+          <div className="popup-content">
+            <div className="popup-header">
+              <h2>Add Quiz</h2>
+              <button className="popup-close" onClick={closePopup}>&times;</button>
+            </div>
+            <div className="form-group">
+              <label>Question Key:</label>
+              <input
+                type="text"
+                value={questionKey} // Input field for the question key
+                onChange={handleQuestionKeyChange}
+                placeholder="Enter question key"
+              />
+              <button type="button" onClick={handleUpdateQuestionKey}>
+                Update Question Key
+              </button>
+            </div>
+            {exercise[questionKey]?.map((answer, index) => (
+              <div key={`answer-${index}`} className="answer-label">
+                Answer {index + 1}:
+                <input
+                  type="text"
+                  name={`answer-${index}`}
+                  placeholder={`Answer ${index + 1}`}
+                  value={Object.keys(answer)[0]} // Display the current key
+                  onChange={(e) => handleExerciseChange(e, index)}
+                />
+                Correct?
+                <input
+                  type="checkbox"
+                  name={`correct-${index}`}
+                  checked={answer.correct}
+                  onChange={(e) => handleExerciseChange(e, index)}
+                />
+              </div>
+            ))}
+            <button type="button" onClick={handleAddQuiz}>Add Quiz</button>
+          </div>
         </div>
-      ))}
-      <button type="button" onClick={handleAddQuiz}>Add Quiz</button>
+      )}
     </div>
   );
 };

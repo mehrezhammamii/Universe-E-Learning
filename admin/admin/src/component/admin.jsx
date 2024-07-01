@@ -69,6 +69,7 @@ const Admin = ({ onSwitchToCourseManager }) => {
 
   return (
     <div className="admin-container">
+      <button className="go-to-course-manager" onClick={onSwitchToCourseManager}>Go to Course Manager</button>
       <h2>Admin Page</h2>
       <div className="course-list">
         {courses.map(course => (
@@ -78,28 +79,32 @@ const Admin = ({ onSwitchToCourseManager }) => {
             <p>Description: {course.description}</p>
             <p>Price: {course.price}</p>
             {course.picture && <img src={course.picture} alt={course.courseName} className="course-picture" />}
-            <div>
-              <button onClick={() => handleDeleteCourse(course._id)}>Delete</button>
-              <button onClick={() => handleUpdateCourse(course)}>Update</button>
+            <div className="course-item-buttons">
+              <button className="delete" onClick={() => handleDeleteCourse(course._id)}>Delete</button>
+              <button className="update" onClick={() => handleUpdateCourse(course)}>Update</button>
             </div>
           </div>
         ))}
       </div>
       {selectedCourse && (
-        <div className="update-form">
-          <h3>Update Course</h3>
-          <form>
-            <input type="text" name="courseName" placeholder="Course Name" value={updateCourseData.courseName} onChange={handleUpdateChange} />
-            <input type="text" name="categorie" placeholder="Categorie" value={updateCourseData.categorie} onChange={handleUpdateChange} />
-            <textarea name="description" placeholder="Description" value={updateCourseData.description} onChange={handleUpdateChange} />
-            <input type="number" name="price" placeholder="Price" value={updateCourseData.price} onChange={handleUpdateChange} />
-            <input type="text" name="picture" placeholder="Picture URL" value={updateCourseData.picture} onChange={handleUpdateChange} />
-            <button type="button" onClick={handleSaveUpdate}>Save</button>
-            <button type="button" onClick={handleCancelUpdate}>Cancel</button>
-          </form>
+        <div className="modal">
+          <div className="modal-content">
+            <button className="modal-close" onClick={handleCancelUpdate}>&times;</button>
+            <h3>Update Course</h3>
+            <form>
+              <input type="text" name="courseName" placeholder="Course Name" value={updateCourseData.courseName} onChange={handleUpdateChange} />
+              <input type="text" name="categorie" placeholder="Categorie" value={updateCourseData.categorie} onChange={handleUpdateChange} />
+              <textarea name="description" placeholder="Description" value={updateCourseData.description} onChange={handleUpdateChange} />
+              <input type="number" name="price" placeholder="Price" value={updateCourseData.price} onChange={handleUpdateChange} />
+              <input type="text" name="picture" placeholder="Picture URL" value={updateCourseData.picture} onChange={handleUpdateChange} />
+              <div className="course-item-buttons">
+                <button type="button" className="save" onClick={handleSaveUpdate}>Save</button>
+                <button type="button" className="cancel" onClick={handleCancelUpdate}>Cancel</button>
+              </div>
+            </form>
+          </div>
         </div>
       )}
-      <button onClick={onSwitchToCourseManager}>Go to Course Manager</button>
     </div>
   );
 };

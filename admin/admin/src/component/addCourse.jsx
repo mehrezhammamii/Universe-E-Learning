@@ -4,13 +4,13 @@ import './add.css'; // Import the CSS file for styling
 import { CSSTransition } from 'react-transition-group'; // Import animation component
 
 const AddCourseForm = ({ fetchCourses }) => {
-  const [newCourse,setNewCourse] = useState({
+  const [newCourse, setNewCourse] = useState({
     courseName: '',
     categorie: '', 
     description: '',
     price: '',
     picture: '',
-    video:''
+    video: ''
   });
 
   const handleAddCourse = async () => {
@@ -23,7 +23,7 @@ const AddCourseForm = ({ fetchCourses }) => {
         description: '',
         price: '',
         picture: '',
-        video:'',
+        video: '',
       });
       
     } catch (error) {
@@ -63,10 +63,9 @@ const AddCourseForm = ({ fetchCourses }) => {
             <input type="text" name="picture" value={newCourse.picture} onChange={handleChange} />
           </div>
           <div className="form-group">
-            <label>video URL</label>
+            <label>Video URL</label>
             <input type="text" name="video" value={newCourse.video} onChange={handleChange} />
           </div>
-   
           <div className="form-group">
             <button type="button" onClick={handleAddCourse}>Add Course</button>
           </div>

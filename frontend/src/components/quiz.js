@@ -61,16 +61,15 @@ import { StoreContext } from '../context/StoreContext';
     setResultScore(calculatedScore);
     setShowScore(true); 
     if(calculatedScore>=50){
-      alert("you won this test ");
+      alert("you passed the test");
     }else{
-      alert("sorry you fail u need stranger your knowledge and back again ")
+      alert("sorry you failed, u need to learn more and increase your knowledge and come try again")
     }
   };
   return (
     <div className="quiz-container">
       <h2>Quiz Page</h2>
       <button onClick={handleBackButtonClick}>Back to Course</button>
-      <button onClick={() => addToScore(courseId)}>Add Score</button>
       {quizData && quizData.quiz && (
         <form onSubmit={handleQuizSubmit}>
           {quizData.quiz.map((quizItem, index) => (
